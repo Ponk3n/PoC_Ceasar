@@ -1,36 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace PoC___Caesar
 {
     class Program
     {
+        public static char Cipher(char ch, int key)
+        {
+            if (!char.IsLetter(ch))
+            {
+                return ch;
+            }
+
+            char d = char.IsUpper(ch) ? 'A' : 'a';
+            return (char)((((ch + key) - d) % 26) + d);
+        }
+
+        public static string Encipher(string input, int key)
+        {
+            string output = string.Empty;
+
+            foreach (char ch in input)
+                output += Cipher(ch, key);
+
+            return output;
+        }
+
+        public static string Decipher(string input, int key)
+        {
+            return Encipher(input, 26 - key);
+        }
+
         static void Main(string[] args)
         {
-            var result = "";
 
-            System.Console.WriteLine("Ange text du vill kryptera:");
-            string okrypteradText = Console.ReadLine();
-
-            Console.WriteLine("Hur många steg vill du förskjuta?");
-            var steps = Console.ReadLine();
-
-            for (int i = 0; i <= okrypteradText.Length; i++)
-            {
-                char omvandladOkrypteradText = okrypteradText[i];
-
-                //TODO:
-                /*
-                if (Char.IsUpper(omvandladOkrypteradText))
-                {
-                    result += omvandladOkrypteradText(( + steps-65) % 26 + 65);
-                }
-                else
-                {
-                    result += omvandladOkrypteradText(( + steps-97) % 26 + 97);
-                }
-                return result;
-                */
-            }
         }
     }
 }
