@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace PoC___Caesar
 {
@@ -35,7 +32,26 @@ namespace PoC___Caesar
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Skriv det du vill kryptera:");
+            string UserString = Console.ReadLine();
+            Console.Write("\n");
 
+            Console.Write("Skriv in din nyckel: ");
+            int key = Convert.ToInt32(Console.ReadLine());
+            Console.Write("\n");
+
+            Console.WriteLine("Krypterad data");
+            string cipherText = Encipher(UserString, key);
+            Console.WriteLine(cipherText);
+            Console.Write("\n");
+
+            Console.WriteLine("Okrypterad data");
+            string t = Decipher(cipherText, key);
+            Console.WriteLine(t);
+            Console.Write("\n");
+
+            Console.WriteLine("Tryck valfri knapp för att avsluta");
+            Console.ReadKey();
         }
     }
 }
